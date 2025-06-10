@@ -1,0 +1,126 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+  color: #333;
+  transition: background-color 0.4s ease;
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 0;
+}
+
+.date-line {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+#welcome {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.search-bar input {
+  padding: 8px;
+  font-size: 14px;
+  width: 55%;
+  margin-right: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+.search-bar button {
+  padding: 8px 12px;
+  font-size: 14px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#currentLocationBtn {
+  margin-top: 10px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.search-bar button:hover {
+  background-color: #0056b3;
+}
+
+.card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.hidden {
+  display: none;
+}
+
+/* Background themes */
+.sunny {
+  background-color: #ffe680;
+}
+.cloudy {
+  background-color: #dfe6e9;
+}
+.rainy {
+  background-color: #a4b0be;
+  color: #fff;
+}
+.snowy {
+  background-color: #dff9fb;
+}
+.stormy {
+  background-color: #2f3542;
+  color: white;
+}
+.misty {
+  background-color: #ced6e0;
+}
+.default {
+  background-color: #f0f2f5;
+}
+
+/* Theme toggle */
+.dark-mode {
+  background-color: #1c1c1c;
+  color: white;
+}
+
+.dark-mode .container {
+  background: #2c2c2c;
+  box-shadow: 0 4px 12px rgba(255,255,255,0.1);
+}
+
+.dark-mode .card {
+  background: #333;
+  color: white;
+}
+
+.dark-mode input, .dark-mode button {
+  background-color: #444;
+  color: white;
+  border: 1px solid #666;
+}

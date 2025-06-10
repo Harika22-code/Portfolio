@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Now</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌤️ Weather Now</h1>
+    <button id="toggleThemeBtn">🌓 Toggle Theme</button>
+    <p id="date" class="date-line"></p>
+
+    <p id="welcome">Search any city to get real-time weather updates 🌍</p>
+
+    <div class="search-bar">
+      <input type="text" id="cityInput" placeholder="Enter city name" />
+      <button id="searchBtn">Search</button>
+      <button id="currentLocationBtn">📍 Use Current Location</button>
+    </div>
+
+    <div id="loading" class="hidden">⏳ Loading weather data...</div>
+
+    <div id="weatherDisplay" class="card hidden">
+      <h2 id="location"></h2>
+      <p id="condition"></p>
+      <p id="temperature"></p>
+      <p id="humidity"></p>
+      <p id="wind"></p>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
+
