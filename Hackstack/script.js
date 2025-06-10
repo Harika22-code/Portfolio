@@ -10,34 +10,56 @@ const emojiMap = {
   Mist: '〰'
 };
 
+let currentTempCelsius = null;
+let usingCelsius = true;
+
 function fetchWeather(url) {
   document.getElementById("loading").classList.remove("hidden");
 
   fetch(url)
     .then(res => {
-      document.getElementById("loading").classList.add("hidden");
       if (!res.ok) throw new Error("Weather not found.");
       return res.json();
     })
-    .then(data => displayWeather(data))
+    .then(data => {
+      console.log("Weather data:", data);
+      document.getElementById("loading").classList.add("hidden");
+      displayWeather(data);
+      changeBackground(data.weather[0].main);
+    })
     .catch(err => {
       document.getElementById("loading").classList.add("hidden");
       alert(err.message);
+      console.error("Error fetching weather:", err);
     });
 }
 
 function displayWeather(data) {
   const condition = data.weather[0].main;
-  const icon = emojiMap[condition] || '';
+  const icon = emojiMap[condition] || '🌈';
+
+  currentTempCelsius = data.main.temp;
 
   document.getElementById("location").textContent = `${data.name}, ${data.sys.country}`;
   document.getElementById("condition").textContent = `${icon} ${data.weather[0].description}`;
-  document.getElementById("temperature").textContent = `🌡 Temperature: ${data.main.temp} °C`;
+  updateTemperatureDisplay();
   document.getElementById("humidity").textContent = `💧 Humidity: ${data.main.humidity}%`;
   document.getElementById("wind").textContent = `💨 Wind Speed: ${data.wind.speed} m/s`;
 
   document.getElementById("weatherDisplay").classList.remove("hidden");
-  changeBackground(data.weather[0].main);
+}
+
+function updateTemperatureDisplay() {
+  if (currentTempCelsius === null) return;
+
+  const tempText = usingCelsius
+    ? `🌡 Temperature: ${currentTempCelsius.toFixed(1)} °C`
+    : `🌡 Temperature: ${(currentTempCelsius * 9 / 5 + 32).toFixed(1)} °F`;
+
+  const tempElement = document.getElementById("temperature");
+  if (tempElement) {
+    tempElement.textContent = tempText;
+  }
 }
 
 function changeBackground(condition) {
@@ -88,3 +110,9 @@ document.getElementById("toggleThemeBtn").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
 
+// Unit toggle logic
+document.getElementById("toggleUnitBtn").addEventListener("click", () => {
+  usingCelsius = !usingCelsius;
+  updateTemperatureDisplay();
+  document.getElementById("toggleUnitBtn").textContent = usingCelsius ? "🌡 Switch to °F" : "🌡 Switch to °C";
+});

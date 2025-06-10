@@ -9,28 +9,42 @@
 <body>
   <div class="container">
     <h1>🌤️ Weather Now</h1>
-    <button id="toggleThemeBtn">🌓 Toggle Theme</button>
-    <p id="date" class="date-line"></p>
 
-    <p id="welcome">Search any city to get real-time weather updates 🌍</p>
-
-    <div class="search-bar">
-      <input type="text" id="cityInput" placeholder="Enter city name" />
-      <button id="searchBtn">Search</button>
-      <button id="currentLocationBtn">📍 Use Current Location</button>
+    <!-- Toggle Buttons Bar -->
+    <div class="top-bar">
+      <button id="toggleThemeBtn">🌓 Toggle Theme</button>
+      <button id="toggleUnitBtn">🌡 Switch to °F</button>
     </div>
 
+    <!-- Date -->
+    <p id="date" class="date-line"></p>
+
+    <!-- Welcome Note -->
+    <p id="welcome">Search any city to get real-time weather updates 🌍</p>
+
+    <!-- Search Section -->
+    <div class="search-bar">
+      <input type="text" id="cityInput" placeholder="Enter city name" />
+      <div class="search-buttons">
+        <button id="searchBtn">Search</button>
+        <button id="currentLocationBtn">📍 Use Current Location</button>
+      </div>
+    </div>
+
+    <!-- Loading Text -->
     <div id="loading" class="hidden">⏳ Loading weather data...</div>
 
+    <!-- Weather Card -->
     <div id="weatherDisplay" class="card hidden">
       <h2 id="location"></h2>
+      <div id="emojiIcon" class="emoji"></div>
       <p id="condition"></p>
       <p id="temperature"></p>
       <p id="humidity"></p>
       <p id="wind"></p>
     </div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
-
