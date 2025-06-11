@@ -22,7 +22,6 @@ function fetchWeather(url) {
       return res.json();
     })
     .then(data => {
-      console.log("Weather data:", data);
       document.getElementById("loading").classList.add("hidden");
       displayWeather(data);
       changeBackground(data.weather[0].main);
@@ -30,7 +29,6 @@ function fetchWeather(url) {
     .catch(err => {
       document.getElementById("loading").classList.add("hidden");
       alert(err.message);
-      console.error("Error fetching weather:", err);
     });
 }
 
@@ -56,23 +54,44 @@ function updateTemperatureDisplay() {
     ? `🌡 Temperature: ${currentTempCelsius.toFixed(1)} °C`
     : `🌡 Temperature: ${(currentTempCelsius * 9 / 5 + 32).toFixed(1)} °F`;
 
-  const tempElement = document.getElementById("temperature");
-  if (tempElement) {
-    tempElement.textContent = tempText;
-  }
+  document.getElementById("temperature").textContent = tempText;
 }
 
 function changeBackground(condition) {
   const body = document.body;
-  body.className = "";
+  body.className = ""; // Clear previous weather class
+  const rainWrapper = document.querySelector(".rain-wrapper");
+  if (rainWrapper) rainWrapper.remove(); // Remove old rain
 
-  if (condition === "Clear") body.classList.add("sunny");
-  else if (condition === "Clouds") body.classList.add("cloudy");
-  else if (condition === "Rain") body.classList.add("rainy");
-  else if (condition === "Snow") body.classList.add("snowy");
-  else if (condition === "Thunderstorm") body.classList.add("stormy");
-  else if (condition === "Mist") body.classList.add("misty");
-  else body.classList.add("default");
+  switch (condition) {
+    case "Rain":
+    case "Drizzle":
+    case "Thunderstorm":
+      body.classList.add("rainy");
+      createRain();
+      break;
+    case "Clear": body.classList.add("sunny"); break;
+    case "Clouds": body.classList.add("cloudy"); break;
+    case "Snow": body.classList.add("snowy"); break;
+    case "Mist": body.classList.add("misty"); break;
+    default: body.classList.add("default"); break;
+  }
+}
+
+function createRain() {
+  const rainContainer = document.createElement("div");
+  rainContainer.className = "rain-wrapper";
+
+  for (let i = 0; i < 100; i++) {
+    const drop = document.createElement("div");
+    drop.className = "raindrop";
+    drop.style.left = `${Math.random() * 100}vw`;
+    drop.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
+    drop.style.animationDelay = `${Math.random() * 2}s`;
+    rainContainer.appendChild(drop);
+  }
+
+  document.body.appendChild(rainContainer);
 }
 
 // Search by city
@@ -97,20 +116,18 @@ document.getElementById("currentLocationBtn").addEventListener("click", () => {
   }
 });
 
-// Set date on page load
+// Set date
 document.addEventListener("DOMContentLoaded", () => {
-  const dateElement = document.getElementById("date");
-  if (dateElement) {
-    dateElement.textContent = new Date().toDateString();
-  }
+  document.getElementById("date").textContent = new Date().toDateString();
+  createRain(); // Start rain immediately by default
 });
 
-// Theme toggle logic
+// Theme toggle
 document.getElementById("toggleThemeBtn").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
 
-// Unit toggle logic
+// Unit toggle
 document.getElementById("toggleUnitBtn").addEventListener("click", () => {
   usingCelsius = !usingCelsius;
   updateTemperatureDisplay();
