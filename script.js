@@ -79,9 +79,6 @@ function changeBackground(condition) {
 }
 
 function createRain() {
-  const oldRain = document.querySelector(".rain-wrapper");
-  if (oldRain) oldRain.remove();
-
   const rainContainer = document.createElement("div");
   rainContainer.className = "rain-wrapper";
 
@@ -89,14 +86,15 @@ function createRain() {
     const drop = document.createElement("div");
     drop.className = "raindrop";
     drop.style.left = `${Math.random() * 100}vw`;
-    drop.style.animationDuration = `${0.5 + Math.random()}s`;
+    drop.style.animationDuration = `${Math.random() * 1 + 0.5}s`;
     drop.style.animationDelay = `${Math.random() * 2}s`;
     rainContainer.appendChild(drop);
   }
 
-  document.body.appendChild(rainContainer);
-}
+  /*document.body.appendChild(rainContainer);*/
+  document.getElementById("weatherInfo").innerHTML = `...`; // ✅ Only updates info
 
+}
 
 // Search by city
 document.getElementById("searchBtn").addEventListener("click", () => {
