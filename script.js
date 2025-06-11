@@ -57,7 +57,7 @@ function updateTemperatureDisplay() {
   document.getElementById("temperature").textContent = tempText;
 }
 
-function changeBackground(condition) {
+/*function changeBackground(condition) {
   const body = document.body;
   body.className = ""; // Clear previous weather class
   const rainWrapper = document.querySelector(".rain-wrapper");
@@ -76,9 +76,25 @@ function changeBackground(condition) {
     case "Mist": body.classList.add("misty"); break;
     default: body.classList.add("default"); break;
   }
+}*/
+function changeBackground(condition) {
+  // Remove any previous rain wrapper (in case it's already added)
+  const existing = document.querySelector('.rain-wrapper');
+  if (existing) existing.remove();
+
+  // Always create rain now
+  createRain();
+
+  // Set background based on condition (optional)
+  if (condition === "Rain" || condition === "Drizzle" || condition === "Thunderstorm") {
+    document.body.style.backgroundImage = 'url("https://images.unsplash.com/photo-1600573472558-6d08fc44c9e2")';
+  } else {
+    document.body.style.backgroundImage = 'url("https://images.unsplash.com/photo-1506744038136-46273834b3fb")';
+  }
 }
 
-function createRain() {
+
+/*function createRain() {
   const rainContainer = document.createElement("div");
   rainContainer.className = "rain-wrapper";
 
@@ -92,9 +108,28 @@ function createRain() {
   }
 
   /*document.body.appendChild(rainContainer);*/
-  document.getElementById("weatherInfo").innerHTML = `...`; // ✅ Only updates info
+ /* document.getElementById("weatherInfo").innerHTML = `...`; // ✅ Only updates info
 
+}*/
+function createRain() {
+  const existing = document.querySelector('.rain-wrapper');
+  if (existing) existing.remove();
+
+  const rainContainer = document.createElement("div");
+  rainContainer.className = "rain-wrapper";
+
+  for (let i = 0; i < 120; i++) {
+    const drop = document.createElement("div");
+    drop.className = "raindrop";
+    drop.style.left = `${Math.random() * 100}vw`;
+    drop.style.animationDuration = `${0.5 + Math.random()}s`;
+    drop.style.animationDelay = `${Math.random() * 2}s`;
+    rainContainer.appendChild(drop);
+  }
+
+  document.body.appendChild(rainContainer);
 }
+
 
 // Search by city
 document.getElementById("searchBtn").addEventListener("click", () => {
