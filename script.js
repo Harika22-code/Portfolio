@@ -171,3 +171,8 @@ document.getElementById("toggleUnitBtn").addEventListener("click", () => {
   document.getElementById("toggleUnitBtn").textContent = usingCelsius ? "🌡 Switch to °F" : "🌡 Switch to °C";
 });
 
+window.onload = () => {
+  createRain(); // ⛈️ Always falling from the start
+};
+
+
