@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Now</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🌤️ Weather App</h1>
+
+    <!-- Toggle Buttons Bar -->
+    <div class="top-bar">
+      <button id="toggleThemeBtn">🌓 Toggle Theme</button>
+      <button id="toggleUnitBtn">🌡 Switch to °F</button>
+    </div>
+
+    <!-- Date -->
+    <p id="date" class="date-line"></p>
+
+    <!-- Welcome Note -->
+    <p id="welcome">Search any city to get real-time weather updates 🌍</p>
+
+    <!-- Search Section -->
+    <div class="search-bar">
+      <input type="text" id="cityInput" placeholder="Enter city name" />
+      <div class="search-buttons">
+        <button id="searchBtn">Search</button>
+        <button id="currentLocationBtn">📍 Use Current Location</button>
+      </div>
+    </div>
+
+    <!-- Loading Text -->
+    <div id="loading" class="hidden">⏳ Loading weather data...</div>
+
+    <!-- Weather Card -->
+    <div id="weatherDisplay" class="card hidden">
+      <h2 id="location"></h2>
+      <div id="emojiIcon" class="emoji"></div>
+      <p id="condition"></p>
+      <p id="temperature"></p>
+      <p id="humidity"></p>
+      <p id="wind"></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+ <!-- Rain drop animation wrapper -->
+<div class="rain-wrapper">
+  
+  <div class="raindrop" style="--i:1;"></div>
+  <div class="raindrop" style="--i:2;"></div>
+  <div class="raindrop" style="--i:3;"></div>
+  <!-- Copy up to 100 or more -->
+  <!-- You can auto-generate them using JS if needed -->
+  <!-- Here's just 10 for sample -->
+  <div class="raindrop" style="--i:4;"></div>
+  <div class="raindrop" style="--i:5;"></div>
+  <div class="raindrop" style="--i:6;"></div>
+  <div class="raindrop" style="--i:7;"></div>
+  <div class="raindrop" style="--i:8;"></div>
+  <div class="raindrop" style="--i:9;"></div>
+  <div class="raindrop" style="--i:10;"></div>
+</div>
+
+<div class="rain"></div>
+
+</body>
+</html>
