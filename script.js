@@ -91,7 +91,9 @@ function createRain() {
     rainContainer.appendChild(drop);
   }
 
-  document.body.appendChild(rainContainer);
+ /* document.body.appendChild(rainContainer);*/
+  document.getElementById("weatherInfo").innerHTML = `...`; // ✅ Only updates info
+
 }
 
 // Search by city
@@ -133,3 +135,5 @@ document.getElementById("toggleUnitBtn").addEventListener("click", () => {
   updateTemperatureDisplay();
   document.getElementById("toggleUnitBtn").textContent = usingCelsius ? "🌡 Switch to °F" : "🌡 Switch to °C";
 });
+window.onload = createRain;
+
