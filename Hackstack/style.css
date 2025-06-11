@@ -1,24 +1,43 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f0f2f5;
   color: #333;
-  transition: background-color 0.4s ease, color 0.4s ease;
+  overflow-x: hidden;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  background-size: cover;
+  background-position: center;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .container {
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background:white;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
+  animation: slideUp 1s ease;
+  position: relative;
+  z-index: 1; 
+  color:black;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
 
 h1 {
-  font-size: 28px;
+  font-size: 30px;
   margin-bottom: 10px;
 }
 
@@ -35,77 +54,54 @@ h1 {
   color: #666;
 }
 
-.top-bar {
+.top-bar,
+.search-buttons {
   display: flex;
   justify-content: center;
   gap: 10px;
+  flex-wrap: wrap;
   margin-bottom: 15px;
+   margin-top: 30px;
 }
 
-.top-bar button {
-  padding: 6px 12px;
+button {
+  padding: 8px 14px;
   font-size: 14px;
-  border-radius: 6px;
+  border-radius: 8px;
   border: none;
-  background-color: #333;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
   color: white;
+  font-weight: bold;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.top-bar button:hover {
-  background-color: #555;
-}
-
-.search-bar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
 }
 
 .search-bar input {
-  padding: 8px;
+  padding: 10px;
   font-size: 14px;
-  width: 60%;
+  width: 80%;
+  max-width: 400px;
   border: 1px solid #ccc;
-  border-radius: 6px;
-}
+  border-radius: 8px;
 
-.search-buttons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.search-buttons button {
-  padding: 8px 12px;
-  font-size: 14px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.search-buttons button:hover {
-  background-color: #0056b3;
-}
-
-#currentLocationBtn {
-  margin-top: 0px;
 }
 
 .card {
-  background: #f9f9f9;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
   padding: 20px;
   margin-top: 20px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 2s ease;
 }
 
 .emoji {
-  font-size: 48px;
+  font-size: 52px;
   margin: 10px 0;
 }
 
@@ -113,32 +109,38 @@ h1 {
   display: none;
 }
 
-/* Weather background themes */
+/* Weather animated themes */
 .sunny {
-  background-color: #ffe680;
+  background: linear-gradient(#fceabb, #f8b500);
+  animation: sunPulse 5s infinite;
 }
 
+@keyframes sunPulse {
+  0%, 100% { background-color: #fceabb; }
+  50% { background-color: #ffe680; }
+}
 .cloudy {
-  background-color: #dfe6e9;
+  background: url('https://cdn.pixabay.com/photo/2016/10/18/21/22/clouds-1756581_1280.jpg') center/cover no-repeat;
 }
 
 .rainy {
-  background-color: #a4b0be;
-  color: #fff;
+  background: url('https://media.giphy.com/media/l0MYEWpv7Ue0RFVaE/giphy.gif') center/cover no-repeat;
+  color: white;
 }
 
 .snowy {
-  background-color: #dff9fb;
+  background: url('https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif') center/cover no-repeat;
 }
 
 .stormy {
-  background-color: #2f3542;
+  background: url('https://media.giphy.com/media/k61nOBRRBMxva/giphy.gif') center/cover no-repeat;
   color: white;
 }
 
 .misty {
-  background-color: #ced6e0;
+  background: url('https://media.giphy.com/media/xT0BKmtQGLbumr5RCM/giphy.gif') center/cover no-repeat;
 }
+
 
 .default {
   background-color: #f0f2f5;
@@ -146,27 +148,93 @@ h1 {
 
 /* Dark Mode */
 .dark-mode {
-  background-color: #1c1c1c;
-  color: white;
+  background-color: #121212;
+  color: #eee;
 }
 
 .dark-mode .container {
-  background: #2c2c2c;
-  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+  background: white;  /* ✅ Now white for both */
+  color: black;
 }
 
 .dark-mode .card {
-  background: #333;
+  background: rgba(60, 60, 60, 0.9);
   color: white;
 }
 
 .dark-mode input,
 .dark-mode button {
-  background-color: #444;
+  background-color: #333;
   color: white;
   border: 1px solid #666;
 }
 
-.dark-mode .top-bar button {
-  background-color: #666;
+/* Rain animation background */
+.rain-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;                /* wider raindrops */
+  height: 25px;              /* taller drops */
+  background: rgba(255, 255, 255, 0.7); /* more visible */
+  animation: fall 1s linear infinite;
+  border-radius: 50px;       /* gives more of a drop shape */
+}
+
+
+@keyframes raindropFall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+.rain {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at bottom, #0f2027, #203a43, #2c5364); /* stormy sky gradient */
+  z-index: -1;
+  overflow: hidden;
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.4);
+  animation: drop 1s linear infinite;
+  border-radius: 1px;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+body.dark-mode .container {
+  background-color: #222;  /* or any dark color */
+  color: white;
 }
