@@ -1,0 +1,241 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f0f2f5;
+  color: #333;
+  overflow-x: hidden;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  background-size: cover;
+  background-position: center;
+  animation: fadeIn 2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background:white;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: slideUp 1s ease;
+  position: relative;
+  z-index: 1; 
+  color:black;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(50px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+h1 {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.date-line {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+#welcome {
+  font-size: 14px;
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.top-bar,
+.search-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+   margin-top: 30px;
+}
+
+button {
+  padding: 8px 14px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(to right, #4facfe, #00f2fe);
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 242, 254, 0.6);
+}
+
+.search-bar input {
+  padding: 10px;
+  font-size: 14px;
+  width: 80%;
+  max-width: 400px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 20px;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  animation: fadeIn 2s ease;
+}
+
+.emoji {
+  font-size: 52px;
+  margin: 10px 0;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Weather animated themes */
+.sunny {
+  background: linear-gradient(#fceabb, #f8b500);
+  animation: sunPulse 5s infinite;
+}
+
+@keyframes sunPulse {
+  0%, 100% { background-color: #fceabb; }
+  50% { background-color: #ffe680; }
+}
+.cloudy {
+  background: url('https://cdn.pixabay.com/photo/2016/10/18/21/22/clouds-1756581_1280.jpg') center/cover no-repeat;
+}
+
+.rainy {
+  background: url('https://media.giphy.com/media/l0MYEWpv7Ue0RFVaE/giphy.gif') center/cover no-repeat;
+  color: white;
+}
+
+.snowy {
+  background: url('https://media.giphy.com/media/3o6ZtaO9BZHcOjmErm/giphy.gif') center/cover no-repeat;
+}
+
+.stormy {
+  background: url('https://media.giphy.com/media/k61nOBRRBMxva/giphy.gif') center/cover no-repeat;
+  color: white;
+}
+
+.misty {
+  background: url('https://media.giphy.com/media/xT0BKmtQGLbumr5RCM/giphy.gif') center/cover no-repeat;
+}
+
+
+.default {
+  background-color: #f0f2f5;
+}
+
+/* Dark Mode */
+.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+.dark-mode .container {
+  background: white;  /* ✅ Now white for both */
+  color: black;
+}
+
+.dark-mode .card {
+  background: rgba(60, 60, 60, 0.9);
+  color: white;
+}
+
+.dark-mode input,
+.dark-mode button {
+  background-color: #333;
+  color: white;
+  border: 1px solid #666;
+}
+
+/* Rain animation background */
+.rain-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;                /* wider raindrops */
+  height: 25px;              /* taller drops */
+  background: rgba(255, 255, 255, 0.7); /* more visible */
+  animation: fall 1s linear infinite;
+  border-radius: 50px;       /* gives more of a drop shape */
+}
+
+
+@keyframes raindropFall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+.rain {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at bottom, #0f2027, #203a43, #2c5364); /* stormy sky gradient */
+  z-index: -1;
+  overflow: hidden;
+}
+
+.raindrop {
+  position: absolute;
+  width: 2px;
+  height: 15px;
+  background: rgba(255, 255, 255, 0.4);
+  animation: drop 1s linear infinite;
+  border-radius: 1px;
+}
+
+@keyframes drop {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+body.dark-mode .container {
+  background-color: #222;  /* or any dark color */
+  color: white;
+}
+
