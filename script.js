@@ -60,8 +60,8 @@ function updateTemperatureDisplay() {
 function changeBackground(condition) {
   const body = document.body;
   body.className = ""; // Clear previous weather class
-  // const rainWrapper = document.querySelector(".rain-wrapper");
-  // if (rainWrapper) rainWrapper.remove(); // Remove old rain
+  //const rainWrapper = document.querySelector(".rain-wrapper");
+  //if (rainWrapper) rainWrapper.remove(); // Remove old rain
 
   switch (condition) {
     case "Rain":
@@ -79,6 +79,9 @@ function changeBackground(condition) {
 }
 
 function createRain() {
+  const existingRain = document.querySelector(".rain-wrapper");
+  if (existingRain) existingRain.remove(); // remove old rain, if any
+
   const rainContainer = document.createElement("div");
   rainContainer.className = "rain-wrapper";
 
@@ -91,10 +94,9 @@ function createRain() {
     rainContainer.appendChild(drop);
   }
 
-  /*document.body.appendChild(rainContainer);*/
-  document.getElementById("weatherInfo").innerHTML = `...`; // ✅ Only updates info
-
+  document.body.appendChild(rainContainer); // ✅ Append to body
 }
+
 
 // Search by city
 document.getElementById("searchBtn").addEventListener("click", () => {
@@ -136,3 +138,6 @@ document.getElementById("toggleUnitBtn").addEventListener("click", () => {
   document.getElementById("toggleUnitBtn").textContent = usingCelsius ? "🌡 Switch to °F" : "🌡 Switch to °C";
 });
 
+window.addEventListener("load", () => {
+  createRain(); // ✅ Start rain immediately on page load
+});
