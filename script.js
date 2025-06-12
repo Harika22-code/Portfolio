@@ -60,8 +60,8 @@ function updateTemperatureDisplay() {
 function changeBackground(condition) {
   const body = document.body;
   body.className = ""; // Clear previous weather class
-  const rainWrapper = document.querySelector(".rain-wrapper");
-  if (rainWrapper) rainWrapper.remove(); // Remove old rain
+  // const rainWrapper = document.querySelector(".rain-wrapper");
+  // if (rainWrapper) rainWrapper.remove(); // Remove old rain
 
   switch (condition) {
     case "Rain":
