@@ -169,7 +169,6 @@ button:hover {
   border: 1px solid #666;
 }
 
-/* Rain animation background */
 .rain-wrapper {
   position: fixed;
   top: 0;
@@ -177,27 +176,28 @@ button:hover {
   height: 100vh;
   width: 100vw;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
   overflow: hidden;
 }
 
 .raindrop {
   position: absolute;
   width: 2px;                /* wider raindrops */
-  height: 25px;              /* taller drops */
+  height: 35px;              /* taller drops */
   background: rgba(255, 255, 255, 0.7); /* more visible */
-  animation: fall 1s linear infinite;
-  border-radius: 50px;       /* gives more of a drop shape */
+  animation: fall 1.2s linear infinite;
+  border-radius: 50px;
+  opacity: 0.8;       /* gives more of a drop shape */
 }
 
 
-@keyframes raindropFall {
+@keyframes drop {
   0% {
-    transform: translateY(0);
+    transform: translateY(-30px);
     opacity: 1;
   }
   100% {
-    transform: translateY(110vh);
+    transform: translateY(100vh);
     opacity: 0;
   }
 }
@@ -235,7 +235,7 @@ button:hover {
 }
 
 body.dark-mode .container {
-  background-color: #222;  /* or any dark color */
-  color: white;
+  background-color: #222;  /* or any dark color 
+ s color: white;*/
 }
 
